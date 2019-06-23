@@ -1,7 +1,11 @@
 .Fixed {
-    width: 300px;
+    width: 500px;
     margin-right: 5px;
     margin-top: 5px;
+}
+
+.dishReview{
+    height: 600px;
 }
 .Comments {
     margin-left: -28px;

@@ -29,16 +29,16 @@ class Menu extends Component {
             return(
                 <Row>
                     <Col className="Fixed">
-                        <Card body>
+                        <Card body className="dishReview">
                             <CardImg width="100%" src={dish.image} alt={dish.name}/>
                                 <CardTitle>{dish.name}</CardTitle>
-                                <CardText>{dish.description}</CardText>
+                                  <CardText>{dish.description}</CardText>
                         </Card>
                     </Col>
-                    <Col className="Fixed Comments">
-                        <Card body>
+                    <Col className="Fixed Comments dishReview">
+                        <Card body className="dishReview">
                                 <CardTitle><strong>Comments</strong></CardTitle>
-                                <CardText><DishDetail dish={this.state.dish}/></CardText>
+                                <CardText><DishDetail dish={this.state.selectedDish}/></CardText> 
                         </Card>
                     </Col>
                 </Row>
@@ -52,7 +52,7 @@ class Menu extends Component {
         }
     }
 
-    render() {
+    render() { 
         const menu = this.props.dishes.map((dish)=>{
             return (
                 <div key={dish.id}>
