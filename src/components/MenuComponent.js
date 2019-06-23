@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import {Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle} from 'reactstrap';
+import {Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle, Row, Col} from 'reactstrap';
+import DishDetail from './DishDetail';
+import '../../src/App.css';
 class Menu extends Component {
     constructor(props) {
         super(props);
@@ -7,21 +9,40 @@ class Menu extends Component {
             //store properties of component
             selectedDish: null
         }
+        console.log('Menu Component constructor is called');
     }
+
+    componentDidMount(){
+        console.log('Menu Component componentDidMount is called');
+    }
+
+
+
     onDishSelect(dish){
+        console.log('Menu Component onDishSelect is called');
         this.setState({selectedDish:dish})
     }
 
     renderDish(dish){
+        console.log('Menu Component renderDish is called');
         if(dish!=null){
             return(
-                <Card>
-                    <CardImg width="100%" src={dish.image} alt={dish.name}/>
-                    <CardBody>
-                        <CardTitle>{dish.name}</CardTitle>
-                        <CardText>{dish.description}</CardText>
-                    </CardBody>
-                </Card>
+                <Row>
+                    <Col className="Fixed">
+                        <Card body>
+                            <CardImg width="100%" src={dish.image} alt={dish.name}/>
+                                <CardTitle>{dish.name}</CardTitle>
+                                <CardText>{dish.description}</CardText>
+                        </Card>
+                    </Col>
+                    <Col className="Fixed Comments">
+                        <Card body>
+                                <CardTitle><strong>Comments</strong></CardTitle>
+                                <CardText><DishDetail dish={this.state.dish}/></CardText>
+                        </Card>
+                    </Col>
+                </Row>
+                
             );
         }
         else{
@@ -34,25 +55,30 @@ class Menu extends Component {
     render() {
         const menu = this.props.dishes.map((dish)=>{
             return (
-                <div key={dish.id} className="col-12 col-md-5 m-1s">
-                    <Card onClick={()=>this.onDishSelect(dish)}>
+                <div key={dish.id}>
+                <Row>
+                <Col className="Fixed">
+                    <Card body onClick={()=>this.onDishSelect(dish)}>
                         <CardImg width="100%" src={dish.image} alt={dish.name}/>
                         <CardImgOverlay>
                             <CardTitle>{dish.name}</CardTitle>
                         </CardImgOverlay>
                     </Card>
+                </Col>
+                </Row>  
                 </div>
             );
         });
-
+        
+        console.log('Menu Component render is called');
         return (
            <div className="container">
-            <div className="row">
+            <Row>
                     {menu}
-            </div>
-            <div className="row">
+            </Row>
+            <Row>
                 {this.renderDish(this.state.selectedDish)}
-            </div>
+            </Row>
            </div> 
         );
     }
