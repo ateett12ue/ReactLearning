@@ -29,14 +29,14 @@ class DishDetail extends Component {
             return(
                 <div>
                 <Row>
-                   <Col className="Fixed">
+                   <Col md="6" className="Fixed">
                        <Card body className="dishReview">
                            <CardImg width="100%" src={this.props.dish.image} alt={this.props.dish.name}/>
                            <CardTitle>{this.props.dish.name}</CardTitle>
                            <CardText>{this.props.dish.description}</CardText>
                        </Card>
                    </Col>
-                   <Col className="Fixed Comments dishReview">
+                   <Col md="6"className="Fixed Comments dishReview">
                        <Card body className="dishReview">
                            <CardTitle><strong>Comments</strong></CardTitle>
                            <CardText>{this.review()}</CardText> 
