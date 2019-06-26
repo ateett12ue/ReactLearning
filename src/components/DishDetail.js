@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle,Row, Col} from 'reactstrap';
 import dateFormat from 'dateformat';
+import '../../src/App.css';
 class DishDetail extends Component {
     constructor(props){
         super(props);
