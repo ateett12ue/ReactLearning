@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import {Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle,Row, Col} from 'reactstrap';
-import dateFormat from 'dateformat';
-import '../../src/App.css';
 class DishDetail extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-        }
+   
+    componentDidMount(){
+        console.log('Dishdetail component compentdidmount');
     }
+    componentDidUpdate(){
+        console.log('Dishdetail component compentdidupdate')
+    }
+
+
     review(){
         let rev = this.props.dish.comments.map((comm)=>{
             return(            
@@ -15,7 +17,7 @@ class DishDetail extends Component {
                     <Row>
                         <Col>
                             <p>{comm.comment}</p>
-                            <p>-- <strong>{comm.author}</strong> {dateFormat(comm.date, "mmmm dS, yyyy")}</p>
+                            <p>-- <strong>{comm.author}</strong> {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comm.date)))}</p>
                             <br />
                         </Col>
                     </Row>
@@ -26,9 +28,12 @@ class DishDetail extends Component {
     }
     
     render() {
+        
+        console.log('Dishdetail component render invoked');
+
         if(this.props.dish!=null){
             return(
-                <div>
+                <div className="container">
                 <Row>
                    <Col md="6" className="Fixed">
                        <Card body className="dishReview">
