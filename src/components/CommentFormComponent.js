@@ -23,8 +23,8 @@ toggleModal(){
     })
 }
 handleSubmit(values){
-    console.log("Current state is:" + JSON.stringify(values));
-    alert("Current state is:" + JSON.stringify(values));
+    this.toggleModal();
+    this.props.addComment(this.props.dishId, values.rating, values.yourname, values.comment);
 }
 
 render(){
