@@ -1,13 +1,18 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import {Loading} from './LoadingComponent';
+import {baseUrl} from '../shared/baseUrl';
+import {FadeTransform, Fade, Stagger } from 'react-animation-components';
+
 
 function RenderLeader({leader}) {
 return(
         <div id={leader.id}>
+            <Fade in>    
                 <Media tag="li">
                     <Media >
-                    <Media object src={leader.image} alt={leader.name} />
+                    <Media object src={baseUrl + leader.image} alt={leader.name} />
                     </Media>
                     <Media body className="ml-5">
                         <Media heading><strong>{leader.name}</strong></Media>
@@ -18,16 +23,39 @@ return(
                         <br />
                     </Media>
                 </Media>
+                </Fade>
           </div>
           );
         }
 
 function About(props) {
-    const leaders = props.leaders.map((leader) => {
+    const leaders = props.leaders.leaders.map((leader) => {
         return (
               <RenderLeader leader = {leader}  />
         );
     });
+
+    if(props.leaders.isLoading) {
+        return (
+            <div className="container">
+                <div className="row">
+                    <Loading />
+                </div>
+            </div>
+        );
+    }
+
+    else if (props.leaders.errMess){
+        return (
+            <div className="container">
+                <div className="row">
+                    <h4>{props.leaders.errMess}</h4>
+                </div>
+            </div>
+        );
+    }
+
+    else{
     return(
         <div className="container">
             <div className="row">
@@ -79,20 +107,25 @@ function About(props) {
                 </div>
             </div>
             <div className="row row-content">
-                <div className="col-12">
-                    <h2>Corporate Leadership</h2>
-                    <br />
+                    <div className="col-12">
+                        <h2>Corporate Leadership</h2>
+                        <br />
+                    </div>
+                    
+                    <div className="col-12">
+                        <Media list>
+                            <Stagger in>
+                                {leaders}
+                            </Stagger>
+                        </Media>
+                    </div>
+                    
                 </div>
                 
-                <div className="col-12">
-                    <Media list>
-                        {leaders}
-                    </Media>
-                </div>
             </div>
-        </div>
         
     );
+    }
 }
 
 export default About;    

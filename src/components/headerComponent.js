@@ -89,6 +89,7 @@ class Header extends Component{
                         </div>
                     </div>
                 </Jumbotron>
+                
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader>Login</ModalHeader>
                     <ModalBody>
@@ -104,7 +105,7 @@ class Header extends Component{
                             <FormGroup check>
                                 <Label check>
                                     <Input type="checkbox" name="remember" innerRef={(input)=>this.remember=input} />
-                                    Remember me                                </Label>
+                                    Remember me</Label>
                             </FormGroup>
                             <Button type="submit" value="submit" className="primary">Login</Button>
                         </Form>
